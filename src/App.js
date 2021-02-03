@@ -3,16 +3,15 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar.js";
 import EpisodeList from "./components/Episodes/EpisodeList.js";
 import EpisodeInfo from "./components/Episodes/EpisodeInfo.js";
-// import data from "./dummy";
 
 function App() {
-  const [data, setData] = useState([]);
-  const [sortedEpisodes, setSortedEpisodes] = useState(data);
+  const [allEpisodes, setAllEpisodes] = useState();
+  const [sortedEpisodes, setSortedEpisodes] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedEpisode, setSelectedEpisode] = useState();
   const sortEpisodeHandler = (anchor) => {
     if (anchor === "release-date") {
-      const sortedList = data
+      const sortedList = allEpisodes
         .slice()
         .sort(
           (a, b) =>
@@ -21,12 +20,12 @@ function App() {
         );
       setSortedEpisodes(sortedList);
     } else if (anchor === "episode") {
-      const sortedList = data
+      const sortedList = allEpisodes
         .slice()
         .sort((a, b) => a.fields.episode - b.fields.episode);
       setSortedEpisodes(sortedList);
     } else {
-      setSortedEpisodes(data);
+      setSortedEpisodes(allEpisodes);
     }
   };
 
@@ -37,42 +36,37 @@ function App() {
     setSelectedEpisode([episode]);
   };
 
-  const getData = () => {
-    const timer = setTimeout(() => {
-      fetch("data.json", {
+  const getData = async () => {
+      await fetch("data.json", {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
       })
         .then((response) => {
-          console.log(response);
           return response.json();
         })
         .then((data) => {
-          console.log(data);
-          setDataHandler(data);
+          setDataHandler(data)
         });
-      
-    }, 1000);
-    return () => clearTimeout(timer);
-    
   };
 
   const setDataHandler = (newData) => {
-    console.log(newData.data + "newData");
-    setData(newData.data);
-    console.log(data);
+    setAllEpisodes(newData.data);
   };
 
   useEffect(() => {
-    getData();
-    
+    getData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setSortedEpisodes(allEpisodes)
+  }, [allEpisodes]);
+
   return (
     <div className="App">
+      
       <Navbar
         setSearchTermHandler={setSearchTermHandler}
         sortEpisodeHandler={sortEpisodeHandler}

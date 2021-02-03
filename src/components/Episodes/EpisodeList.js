@@ -3,7 +3,6 @@ import "./Episodes.css";
 
 const EpisodeList = (props) => {
   const { sortedEpisodes, searchTerm, pickEpisodeHandler } = props;
-  console.log(sortedEpisodes);
   return (
     <div className="EpisodeList">
       {sortedEpisodes !== undefined && sortedEpisodes
