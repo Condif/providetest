@@ -46,7 +46,7 @@ const Episodes = (props) => {
             );
           })
         ) : (
-          <h3>Inget avsnitt episodest</h3>
+          <h3>Inget avsnitt valt</h3>
         )}
       </div>
     </div>
