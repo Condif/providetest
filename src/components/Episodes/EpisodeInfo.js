@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Episodes.css";
 
-const Episode_info = (props) => {
+const EpisodeInfo = (props) => {
   const { selectedEpisode } = props;
   return (
     <div className="EpisodeInfo">
@@ -23,4 +23,4 @@ const Episode_info = (props) => {
     </div>
   );
 };
-export default Episode_info;
+export default EpisodeInfo;
