@@ -8,6 +8,19 @@
     background-color: #EDEDED;
 }
 
+.rightNavGroup {
+    display: flex;
+    align-items: center;
+}
+
+.rightNavGroup button {
+    background-color: #EDEDED;
+    border: #CACACA solid 1.5px;
+    height: 1.5rem;
+    width: 6rem;
+    margin-right: 1rem;
+}
+
 .leftNavGroup {
     display: flex;
     width: 10rem;

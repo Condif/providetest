@@ -3,9 +3,12 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar.js";
 import EpisodeList from "./components/Episodes/EpisodeList.js";
 import EpisodeInfo from "./components/Episodes/EpisodeInfo.js";
+import { useDispatch, useSelector } from "react-redux";
+import {getAllEpisodes} from "./actions/EpisodeActions"
 
-function App() {
-  const [allEpisodes, setAllEpisodes] = useState();
+const App = () => {
+  const dispatch = useDispatch();
+  const allEpisodes = useSelector((state) => state.episode.allEpisodes);
   const [sortedEpisodes, setSortedEpisodes] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedEpisode, setSelectedEpisode] = useState();
@@ -36,27 +39,13 @@ function App() {
     setSelectedEpisode([episode]);
   };
 
-  const getData = async () => {
-      await fetch("data.json", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          setDataHandler(data)
-        });
-  };
-
-  const setDataHandler = (newData) => {
-    setAllEpisodes(newData.data);
-  };
+  const handleGetAllEpisodes = () => {
+    dispatch(getAllEpisodes())
+  }
+  
 
   useEffect(() => {
-    getData()
+    handleGetAllEpisodes()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -66,7 +55,6 @@ function App() {
 
   return (
     <div className="App">
-      
       <Navbar
         setSearchTermHandler={setSearchTermHandler}
         sortEpisodeHandler={sortEpisodeHandler}
@@ -82,5 +70,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
