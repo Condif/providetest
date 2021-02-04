@@ -14,10 +14,6 @@
 }
 
 .rightNavGroup button {
-    background-color: #EDEDED;
-    border: #CACACA solid 1.5px;
-    height: 1.5rem;
-    width: 6rem;
     margin-right: 1rem;
 }
 
@@ -30,7 +26,7 @@ li {
     margin-right: 1rem;
 }
 
-.leftNavGroup li button {
+.leftNavGroup li button, .rightNavGroup button {
     background-color: #EDEDED;
     border: #CACACA solid 1.5px;
     height: 1.5rem;

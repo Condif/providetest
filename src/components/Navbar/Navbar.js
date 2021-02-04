@@ -23,8 +23,7 @@ const Navbar = (props) => {
           <button onClick={() => sortEpisodeHandler("episode")}>Avsnitt</button>
         </li>
       </ul>
-      <div className="rightNavGroup">
-        
+      <div className="rightNavGroup"> 
         <ul className="searchInputUl">
           <li >
             <input type="text" className="searchInput" placeholder="Sök på titel..." onChange={(event) => setSearchTermHandler(event)}/>
