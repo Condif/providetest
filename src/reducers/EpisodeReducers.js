@@ -40,7 +40,7 @@ export const episodeReducers = (state = initialState, action) => {
       case "SET_EPISODE":
         return {
           ...state,
-          selectedEpisode: action.episode
+          selectedEpisode: [action.episode]
         }
     default:
       return state;

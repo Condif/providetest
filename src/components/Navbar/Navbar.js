@@ -1,4 +1,5 @@
 import React from "react";
+import {Link, NavLink} from 'react-router-dom'
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import {toggleAuth} from "../../actions/SessionActions"
@@ -24,13 +25,15 @@ const Navbar = () => {
   return (
     <div className="Navbar">
       <ul className="leftNavGroup">
-        <li>Sortera:</li>
-        <li>
-          <button onClick={() => sortEpisodeHandler("release-date")}>Datum</button>
-        </li>
-        <li>
-          <button onClick={() => sortEpisodeHandler("episode")}>Avsnitt</button>
-        </li>
+          <li><Link to="/">Home</Link></li>
+          <li><NavLink to="/series">Series</NavLink></li>
+          <li>Sortera:</li>
+          <li>
+            <button onClick={() => sortEpisodeHandler("release-date")}>Datum</button>
+          </li>
+          <li>
+            <button onClick={() => sortEpisodeHandler("episode")}>Avsnitt</button>
+          </li>
       </ul>
       <div className="rightNavGroup"> 
         <ul className="searchInputUl">
