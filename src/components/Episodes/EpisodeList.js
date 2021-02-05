@@ -1,8 +1,17 @@
 import React from "react";
 import "./Episodes.css";
+import {useSelector, useDispatch} from "react-redux"
+import {setEpisode} from "../../actions/EpisodeActions"
 
-const EpisodeList = (props) => {
-  const { sortedEpisodes, searchTerm, pickEpisodeHandler } = props;
+const EpisodeList = () => {
+  const dispatch = useDispatch()
+  const sortedEpisodes = useSelector(state => state.episode.sortedEpisodes)
+  const searchTerm = useSelector(state => state.episode.searchTerm)
+
+  const pickEpisodeHandler = (episode) => {
+    dispatch(setEpisode(episode))
+  };
+
   return (
     <div className="EpisodeList">
       {sortedEpisodes !== undefined && sortedEpisodes
