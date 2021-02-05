@@ -2,15 +2,24 @@ import React from "react";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import {toggleAuth} from "../../actions/SessionActions"
+import {sortEpisodes, setSearchTerm} from "../../actions/EpisodeActions"
 
-const Navbar = (props) => {
+const Navbar = () => {
   const dispatch = useDispatch()
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const { sortEpisodeHandler, setSearchTermHandler } = props;
+  const allEpisodes = useSelector((state) => state.episode.allEpisodes);
 
   const loginHandler = () => {
     dispatch(toggleAuth())
   }
+
+  const sortEpisodeHandler = (anchor) => {
+    dispatch(sortEpisodes(anchor, allEpisodes))
+  }
+
+  const setSearchTermHandler = (event) => {
+    dispatch(setSearchTerm(event.target.value));
+  };
 
   return (
     <div className="Navbar">

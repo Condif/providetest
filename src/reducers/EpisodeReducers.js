@@ -2,6 +2,9 @@ const initialState = {
   allEpisodes: [],
   loading: false,
   error: null,
+  sortedEpisodes: [],
+  searchTerm: "",
+  selectedEpisode: []
 };
 
 export const episodeReducers = (state = initialState, action) => {
@@ -24,6 +27,21 @@ export const episodeReducers = (state = initialState, action) => {
         allEpisodes: [],
       };
 
+      case "SORT_EPISODES":
+        return {
+          ...state,
+          sortedEpisodes: action.sortedList
+        };
+      case "SET_SEARCH_TERM": 
+        return {
+          ...state,
+          searchTerm: action.searchTerm
+        }
+      case "SET_EPISODE":
+        return {
+          ...state,
+          selectedEpisode: action.episode
+        }
     default:
       return state;
   }

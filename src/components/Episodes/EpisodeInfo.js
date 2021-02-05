@@ -1,8 +1,9 @@
 import React from "react";
 import "./Episodes.css";
+import {useSelector} from "react-redux"
 
-const EpisodeInfo = (props) => {
-  const { selectedEpisode } = props;
+const EpisodeInfo = () => {
+  const selectedEpisode = useSelector(state => state.episode.selectedEpisode)
   return (
     <div className="EpisodeInfo">
       {selectedEpisode !== undefined ? (
