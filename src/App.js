@@ -4,10 +4,11 @@ import Navbar from "./components/Navbar/Navbar.js";
 import EpisodeList from "./components/Episodes/EpisodeList.js";
 import EpisodeInfo from "./components/Episodes/EpisodeInfo.js";
 import { useDispatch, useSelector } from "react-redux";
-import {getAllEpisodes} from "./actions/EpisodeActions"
+import { getAllEpisodes } from "./actions/EpisodeActions";
 
 const App = () => {
   const dispatch = useDispatch();
+  const state = useSelector((state) => state);
   const allEpisodes = useSelector((state) => state.episode.allEpisodes);
   const [sortedEpisodes, setSortedEpisodes] = useState();
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,36 +41,45 @@ const App = () => {
   };
 
   const handleGetAllEpisodes = () => {
-    dispatch(getAllEpisodes())
-  }
-  
+    dispatch(getAllEpisodes());
+  };
+
+  const renderApp = () => {
+    if (state.loading) {
+      return <h1>Loading</h1>;
+    }
+    return (
+      <div className="App">
+        <Navbar
+          setSearchTermHandler={setSearchTermHandler}
+          sortEpisodeHandler={sortEpisodeHandler}
+        />
+        <div className="Episodes">
+          <EpisodeList
+            searchTerm={searchTerm}
+            sortedEpisodes={sortedEpisodes}
+            pickEpisodeHandler={pickEpisodeHandler}
+          />
+          <EpisodeInfo selectedEpisode={selectedEpisode} />
+        </div>
+      </div>
+    );
+  };
 
   useEffect(() => {
-    handleGetAllEpisodes()
+    handleGetAllEpisodes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    setSortedEpisodes(allEpisodes)
+    setSortedEpisodes(allEpisodes);
   }, [allEpisodes]);
 
   return (
-    <div className="App">
-      <Navbar
-        setSearchTermHandler={setSearchTermHandler}
-        sortEpisodeHandler={sortEpisodeHandler}
-      />
-      <div className="Episodes">
-        <EpisodeList
-          searchTerm={searchTerm}
-          sortedEpisodes={sortedEpisodes}
-          pickEpisodeHandler={pickEpisodeHandler}
-        />
-        <EpisodeInfo selectedEpisode={selectedEpisode} />
-      </div>
+    <div>
+      {renderApp()}
     </div>
   );
-}
-
+};
 
 export default App;
