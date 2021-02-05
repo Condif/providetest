@@ -1,7 +1,9 @@
 import "./App.css";
 import React, { useEffect } from "react";
+import Home from "./components/views/Home";
 import Navbar from "./components/Navbar/Navbar.js";
 import Series from "./components/views/Series";
+import { BrowserRouter, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEpisodes, sortEpisodes } from "./actions/EpisodeActions";
 
@@ -25,10 +27,13 @@ const App = () => {
       return <h1>Loading</h1>;
     }
     return (
-      <div className="App">
-        <Navbar />
-        <Series />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Route exact strict path='/' component={Home}/>
+          <Route path='/series' component={Series}/>
+        </div>
+      </BrowserRouter>
     );
   };
 

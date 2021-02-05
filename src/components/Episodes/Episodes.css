@@ -19,6 +19,7 @@
 
 .EpisodeList button:hover { 
     background: lightgreen;
+    cursor: pointer;
 }
 
 .EpisodeInfo {
