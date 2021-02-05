@@ -1,47 +1,77 @@
 .Navbar {
-    width: 100%;
-    height: 5rem;
-    border-bottom: rgb(128,188,245) solid 1px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #EDEDED;
+  width: 100%;
+  height: 5rem;
+  border-bottom: rgb(128, 188, 245) solid 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ededed;
 }
 
 .rightNavGroup {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .rightNavGroup button {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .leftNavGroup {
-    display: flex;
-    width: 10rem;
+  display: flex;
+  align-items: center;
+  width: 10rem;
+  text-decoration: none;
 }
 
 li {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
-.leftNavGroup li button, .rightNavGroup button {
-    background-color: #EDEDED;
-    border: #CACACA solid 1.5px;
-    height: 1.5rem;
-    width: 6rem;
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  color: black;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.leftNavGroup li button,
+.rightNavGroup button {
+  background-color: #ededed;
+  border: #cacaca solid 1.5px;
+  height: 1.5rem;
+  width: 6rem;
+}
+
+.leftNavGroup li button:hover,
+.rightNavGroup button:hover,
+a:hover {
+  cursor: pointer;
+  background-color: rgb(177, 177, 177);
 }
 
 .searchInput {
-    width: 25rem;
-    height: 2rem;
-    padding-left: 1rem;
-    border: #CACACA solid 1.5px;
+  width: 25rem;
+  height: 2rem;
+  padding-left: 1rem;
+  border: #cacaca solid 1.5px;
 }
 
 .searchInputUl {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.leftLinks, .sort {
     display: flex;
-    justify-content: space-between;
-    list-style-type: none;
+    align-items: center;
+    width: 10rem;
 }
