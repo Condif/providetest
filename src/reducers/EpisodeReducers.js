@@ -9,6 +9,7 @@ const initialState = {
 
 export const episodeReducers = (state = initialState, action) => {
   switch (action.type) {
+    
     case "FETCH_ALL_EPISODES_REQUEST":
       return {
         ...state,

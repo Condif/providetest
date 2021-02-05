@@ -25,36 +25,29 @@ export const getAllEpisodes = () => {
 };
 
 export const sortEpisodes = (anchor, allEpisodes) => {
-  return (dispatch) => {
-    if (anchor === "release-date") {
-      const sortedList = allEpisodes
-        .slice()
-        .sort(
-          (a, b) =>
-            b.fields.release_date.substr(6, 9) -
-            a.fields.release_date.substr(6, 9)
-        );
-      dispatch({ type: "SORT_EPISODES", sortedList });
-      // setSortedEpisodes(sortedList);
-    } else if (anchor === "episode") {
-      const sortedList = allEpisodes
-        .slice()
-        .sort((a, b) => a.fields.episode - b.fields.episode);
-      dispatch({ type: "SORT_EPISODES", sortedList });
-    } else {
-      dispatch({ type: "SORT_EPISODES", sortedList: allEpisodes });
-    }
+  if (anchor === "release-date") {
+    const sortedList = allEpisodes
+      .slice()
+      .sort(
+        (a, b) =>
+          b.fields.release_date.substr(6, 9) -
+          a.fields.release_date.substr(6, 9)
+      );
+    return { type: "SORT_EPISODES", sortedList };
+  } else if (anchor === "episode") {
+    const sortedList = allEpisodes
+      .slice()
+      .sort((a, b) => a.fields.episode - b.fields.episode);
+    return { type: "SORT_EPISODES", sortedList };
+  } else {
+    return { type: "SORT_EPISODES", sortedList: allEpisodes };
   }
 };
 
 export const setSearchTerm = (searchTerm) => {
-  return (dispatch) => {
-    dispatch({type: "SET_SEARCH_TERM", searchTerm})
-  }
-}
+  return { type: "SET_SEARCH_TERM", searchTerm };
+};
 
 export const setEpisode = (episode) => {
-  return (dispatch) => {
-    dispatch({type: "SET_EPISODE", episode})
-  }
-}
+  return { type: "SET_EPISODE", episode };
+};
