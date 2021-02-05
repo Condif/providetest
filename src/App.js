@@ -1,9 +1,10 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar.js";
+import Series from "./components/views/Series";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEpisodes, sortEpisodes } from "./actions/EpisodeActions";
-import Series from "./components/views/Series";
+
 
 const App = () => {
   const dispatch = useDispatch();

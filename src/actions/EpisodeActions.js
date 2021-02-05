@@ -1,5 +1,5 @@
 export const getAllEpisodes = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     dispatch({ type: "FETCH_ALL_EPISODES_REQUEST" });
 
     try {
