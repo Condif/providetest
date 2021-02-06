@@ -13,10 +13,11 @@ export const getAllEpisodes = () => {
           return response.json();
         })
         .then((data) => {
+          dispatch({type:"SORT_EPISODES", sortedList: data.data})
           dispatch({
             type: "FETCH_ALL_EPISODES_SUCCESS",
             episodes: data.data,
-          });
+          })
         });
     } catch (error) {
       dispatch({ type: "FETCH_ALL_EPISODES_FAILURE", error });
@@ -34,14 +35,12 @@ export const sortEpisodes = (anchor, allEpisodes) => {
           a.fields.release_date.substr(6, 9)
       );
     return { type: "SORT_EPISODES", sortedList };
-  } else if (anchor === "episode") {
+  } else {
     const sortedList = allEpisodes
       .slice()
       .sort((a, b) => a.fields.episode - b.fields.episode);
     return { type: "SORT_EPISODES", sortedList };
-  } else {
-    return { type: "SORT_EPISODES", sortedList: allEpisodes };
-  }
+  } 
 };
 
 export const setSearchTerm = (searchTerm) => {
