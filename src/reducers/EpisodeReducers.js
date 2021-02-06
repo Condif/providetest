@@ -2,13 +2,13 @@ const initialState = {
   allEpisodes: [],
   loading: false,
   error: null,
-  sortedEpisodes: [],
   searchTerm: "",
   selectedEpisode: []
 };
 
 export const episodeReducers = (state = initialState, action) => {
   switch (action.type) {
+    
     case "FETCH_ALL_EPISODES_REQUEST":
       return {
         ...state,
@@ -30,7 +30,7 @@ export const episodeReducers = (state = initialState, action) => {
       case "SORT_EPISODES":
         return {
           ...state,
-          sortedEpisodes: action.sortedList
+          allEpisodes: action.sortedList
         };
       case "SET_SEARCH_TERM": 
         return {

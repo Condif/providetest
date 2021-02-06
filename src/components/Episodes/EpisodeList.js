@@ -1,11 +1,11 @@
-import React from "react";
+import React  from "react";
 import "./Episodes.css";
 import {useSelector, useDispatch} from "react-redux"
 import {setEpisode} from "../../actions/EpisodeActions"
 
 const EpisodeList = () => {
   const dispatch = useDispatch()
-  const sortedEpisodes = useSelector(state => state.episode.sortedEpisodes)
+  const allEpisodes = useSelector(state => state.episode.allEpisodes)
   const searchTerm = useSelector(state => state.episode.searchTerm)
 
   const pickEpisodeHandler = (episode) => {
@@ -14,7 +14,7 @@ const EpisodeList = () => {
 
   return (
     <div className="EpisodeList">
-      {sortedEpisodes !== undefined && sortedEpisodes
+      {allEpisodes !== undefined && allEpisodes
         .filter((episodes) => {
           if (searchTerm === "") {
             return episodes;
