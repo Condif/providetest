@@ -30,9 +30,7 @@ export const sortEpisodes = (anchor, allEpisodes) => {
     const sortedList = allEpisodes
       .slice()
       .sort(
-        (a, b) =>
-          b.fields.release_date.substr(6, 9) -
-          a.fields.release_date.substr(6, 9)
+        custom_sort
       );
     return { type: "SORT_EPISODES", sortedList };
   } else {
@@ -42,6 +40,10 @@ export const sortEpisodes = (anchor, allEpisodes) => {
     return { type: "SORT_EPISODES", sortedList };
   } 
 };
+
+const custom_sort = (a, b) => {
+  return new Date(b.fields.release_date).getTime() - new Date(a.fields.release_date).getTime();
+}
 
 export const setSearchTerm = (searchTerm) => {
   return { type: "SET_SEARCH_TERM", searchTerm };

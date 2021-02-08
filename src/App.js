@@ -31,8 +31,8 @@ const App = () => {
     if(!localStorage.getItem('state')) {
       dispatch(getAllEpisodes())
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    
+  }, [dispatch]);
   return <div>{renderApp()}</div>;
 };
 
